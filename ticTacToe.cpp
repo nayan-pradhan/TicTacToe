@@ -40,7 +40,7 @@ class Game {
             std::cout << std::endl;
         }
 
-        Game () {
+        Game() {
             make_grid();
             print_grid();
         }
