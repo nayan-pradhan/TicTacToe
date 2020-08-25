@@ -48,7 +48,6 @@ class Game {
                 if (input != "") {
                     char entered = input.c_str()[0];
                     if (entered >= '1' && entered <= '9') {
-                        std::cout << "You entered " << entered << "." << std::endl;
                         int entered_number = entered - '1'; // converting char to int from range 0-8
                         std::cout << "You entered " << entered_number << "." << std::endl;
                     }
