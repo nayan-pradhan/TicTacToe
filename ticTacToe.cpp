@@ -40,9 +40,32 @@ class Game {
             std::cout << std::endl;
         }
 
+        void ask_turn() {
+            std::string input;
+            while(1) {
+                std::cout << "Which position would you like to play?\n-> ";
+                getline(std::cin, input);
+                if (input != "") {
+                    char entered = input.c_str()[0];
+                    if (entered >= '1' && entered <= '9') {
+                        std::cout << "You entered " << entered << "." << std::endl;
+                        int entered_number = entered - '1'; // converting char to int from range 0-8
+                        std::cout << "You entered " << entered_number << "." << std::endl;
+                    }
+                    else {
+                        std::cout << "Please enter a valid position!" << std::endl;
+                    }
+                }  
+                else {
+                    std::cout << "Please enter something!" << std::endl;
+                }
+            }  
+        }
+
         Game() {
             make_grid();
             print_grid();
+            ask_turn();
         }
 };
 
