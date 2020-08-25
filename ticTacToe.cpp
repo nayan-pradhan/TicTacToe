@@ -45,16 +45,23 @@ class Game {
             while(1) {
                 std::cout << "Which position would you like to play?\n-> ";
                 getline(std::cin, input);
+                if (input == "quit") {
+                    quitFN();
+                }
                 if (input != "") {
                     char entered = input.c_str()[0];
                     if (entered >= '1' && entered <= '9') {
                         int entered_number = entered - '1'; // converting char to int from range 0-8
-                        std::cout << "You entered " << entered_number << "." << std::endl;
                         int row = entered_number/3;
                         int col = entered_number%3;
-                        char grid_position = grid[row][col];
-                        std::cout << gird_position << std::endl;
-                        
+                        char grid_position = grid[row][col];                        
+                        if (grid_position == 'X' || grid_position == 'O') {
+                            std::cout << "Sorry, position taken!" << std::endl;
+                        }
+                        else {
+                            grid[row][col] = 'X';
+                            break;
+                        }
                     }
                     else {
                         std::cout << "Please enter a valid position!" << std::endl;
@@ -66,10 +73,18 @@ class Game {
             }  
         }
 
+        void quitFN() {
+            std::cout << "Thank you for playing!" << std::endl;
+            exit(-1);
+        }
+
         Game() {
             make_grid();
-            print_grid();
-            ask_turn();
+
+            while (1) {
+                print_grid();
+                ask_turn();
+            }
         }
 };
 
