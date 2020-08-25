@@ -52,8 +52,8 @@ class Game {
                     char entered = input.c_str()[0];
                     if (entered >= '1' && entered <= '9') {
                         int entered_number = entered - '1'; // converting char to int from range 0-8
-                        int row = entered_number/3;
-                        int col = entered_number%3;
+                        int row = entered_number/grid_size;
+                        int col = entered_number%grid_size;
                         char grid_position = grid[row][col];                        
                         if (grid_position == 'X' || grid_position == 'O') {
                             std::cout << "Sorry, position taken!" << std::endl;
@@ -73,15 +73,52 @@ class Game {
             }  
         }
 
+        void check_wins() {
+            const char *winning_moves[8] = {
+                "123", "456", "789",
+                "147", "258", "369",
+                "159", "753"
+            };
+            for (int i = 0; i < 8; i++) {
+                bool winner = "true";
+                char previous_grid = '0';
+                const char *winning_move = winning_moves[i];
+                for (int j = 0; j < grid_size; j++) {
+                    char character = winning_move[j];
+                    int digit = character - '1';
+                    int row = digit/grid_size;
+                    int col = digit%grid_size;
+                    char grid_char = grid[row][col];
+                    if (previous_grid == '0') {
+                        previous_grid = grid_char;
+                    }
+                    else if (previous_grid == grid_char) {
+                        continue;
+                    }
+                    else {
+                        winner = "false";
+                        break;
+                    }
+
+                }
+                if (winner) {
+                    std::cout << "Congradulations! " << previous_grid << " has won!" << std::endl;
+                    quitFN();
+                }
+
+            }
+        }
+
         void quitFN() {
             std::cout << "Thank you for playing!" << std::endl;
-            exit(-1);
+            exit(0);
         }
 
         Game() {
             make_grid();
 
             while (1) {
+                check_wins(); 
                 print_grid();
                 ask_turn();
             }
