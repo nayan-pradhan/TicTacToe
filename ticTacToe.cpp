@@ -50,6 +50,11 @@ class Game {
                     if (entered >= '1' && entered <= '9') {
                         int entered_number = entered - '1'; // converting char to int from range 0-8
                         std::cout << "You entered " << entered_number << "." << std::endl;
+                        int row = entered_number/3;
+                        int col = entered_number%3;
+                        char grid_position = grid[row][col];
+                        std::cout << gird_position << std::endl;
+                        
                     }
                     else {
                         std::cout << "Please enter a valid position!" << std::endl;
