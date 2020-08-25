@@ -80,7 +80,7 @@ class Game {
                 "159", "753"
             };
             for (int i = 0; i < 8; i++) {
-                bool winner = "true";
+                bool winner = true;
                 char previous_grid = '0';
                 const char *winning_move = winning_moves[i];
                 for (int j = 0; j < grid_size; j++) {
@@ -96,10 +96,9 @@ class Game {
                         continue;
                     }
                     else {
-                        winner = "false";
+                        winner = false;
                         break;
                     }
-
                 }
                 if (winner) {
                     std::cout << "Congradulations! " << previous_grid << " has won!" << std::endl;
@@ -110,6 +109,7 @@ class Game {
         }
 
         void quitFN() {
+            std::cout << std::endl;
             std::cout << "Thank you for playing!" << std::endl;
             exit(0);
         }
@@ -118,8 +118,8 @@ class Game {
             make_grid();
 
             while (1) {
-                check_wins(); 
                 print_grid();
+                check_wins(); 
                 ask_turn();
             }
         }
