@@ -109,8 +109,7 @@ class Game {
         }
 
         void quitFN() {
-            std::cout << std::endl;
-            std::cout << "Thank you for playing!" << std::endl;
+            std::cout << "\nThank you for playing!\n" << std::endl;
             exit(0);
         }
 
