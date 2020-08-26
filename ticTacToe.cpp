@@ -40,10 +40,10 @@ class Game {
             std::cout << std::endl;
         }
 
-        void ask_turn_X() {
+        void ask_turn(char ch) {
             std::string input;
             while(1) {
-                std::cout << "Which position would you like to play?\n-> ";
+                std::cout << "Player " << ch << "'s turn. Which position would you like to play?\n-> ";
                 getline(std::cin, input);
                 if (input == "quit") {
                     quitFN();
@@ -59,40 +59,7 @@ class Game {
                             std::cout << "Sorry, position taken!" << std::endl;
                         }
                         else {
-                            grid[row][col] = 'X';
-                            break;
-                        }
-                    }
-                    else {
-                        std::cout << "Please enter a valid position!" << std::endl;
-                    }
-                }  
-                else {
-                    std::cout << "Please enter something!" << std::endl;
-                }
-            }  
-        }
-
-        void ask_turn_O() {
-            std::string input;
-            while(1) {
-                std::cout << "Which position would you like to play?\n-> ";
-                getline(std::cin, input);
-                if (input == "quit") {
-                    quitFN();
-                }
-                if (input != "") {
-                    char entered = input.c_str()[0];
-                    if (entered >= '1' && entered <= '9') {
-                        int entered_number = entered - '1'; // converting char to int from range 0-8
-                        int row = entered_number/grid_size;
-                        int col = entered_number%grid_size;
-                        char grid_position = grid[row][col];                        
-                        if (grid_position == 'X' || grid_position == 'O') {
-                            std::cout << "Sorry, position taken!" << std::endl;
-                        }
-                        else {
-                            grid[row][col] = 'O';
+                            grid[row][col] = ch;
                             break;
                         }
                     }
@@ -137,7 +104,6 @@ class Game {
                     std::cout << "Congradulations! " << previous_grid << " has won!" << std::endl;
                     quitFN();
                 }
-
             }
         }
 
@@ -152,10 +118,10 @@ class Game {
             while (1) {
                 print_grid();
                 check_wins(); 
-                ask_turn_X();
+                ask_turn('X');
                 print_grid();
                 check_wins();
-                ask_turn_O();
+                ask_turn('O');
             }
         }
 };
