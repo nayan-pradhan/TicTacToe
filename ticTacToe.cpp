@@ -122,16 +122,32 @@ class Game {
                     }
                 }
                 if (winner) {
-                    std::cout << "Congradulations! " << previous_grid << " has won!" << std::endl;
+                    std::cout << "Congratulations! " << previous_grid << " has won!" << std::endl;
                     quitFN();
                 }
             }
         }
 
         void quitFN() {
-            std::cout << "\nThank you for playing!\n" << std::endl;
-            std::cout << "Designed by Nayan Man Singh Pradhan" << std::endl;
-            exit(0);
+            std::string play_again;
+
+            while (1) {
+                std::cout << "Do you want to play again? (Y/n)? -> ";
+                getline(std::cin, play_again);
+                if (play_again == "Y") {
+                    Game();
+                } 
+                else if (play_again == "n") {
+                    std::cout << "\nThank you for playing!\n" << std::endl;
+                    std::cout << "Designed by Nayan Man Singh Pradhan\n" << std::endl;
+                    exit(0);
+                }
+                else {
+                    std::cout << "Please enter Y for 'Yes' and n for 'No'. ";
+                    continue;
+                }
+            }
+
         }
 
         Game() {
