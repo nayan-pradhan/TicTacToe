@@ -11,6 +11,12 @@ class Game {
 
     public:
 
+        void greet() {
+            std::string player1;
+            std::string player2;
+            std::cout << "\nx-x-x-x-x-x-x-x-x-x-    TIC TAC TOE    -x-x-x-x-x-x-x-x-x-x" << std::endl;
+        }
+
         void make_grid() {
             int elem = 1;
             for (int i = 0; i < grid_size; i++) {
@@ -109,10 +115,13 @@ class Game {
 
         void quitFN() {
             std::cout << "\nThank you for playing!\n" << std::endl;
+            std::cout << "Designed by Nayan Man Singh Pradhan" << std::endl;
             exit(0);
         }
 
         Game() {
+
+            greet();
             make_grid();
 
             while (1) {
