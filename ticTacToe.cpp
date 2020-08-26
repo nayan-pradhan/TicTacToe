@@ -48,6 +48,21 @@ class Game {
 
         void ask_turn(char ch) {
             std::string input;
+            
+            // checks if there are any moves left or not
+            int counter = 0;
+            for (int i = 0; i < grid_size; i++) {
+                for (int j = 0; j < grid_size; j++) {
+                    if (grid[i][j] == 'X' || grid[i][j] == 'O') {
+                        counter++;
+                        if (counter == 9) {
+                            std::cout << "Sorry out of moves!" << std::endl;
+                            quitFN();
+                        }
+                    }
+                }
+            }
+
             while(1) {
                 std::cout << "Player " << ch << "'s turn. Which position would you like to play?\n-> ";
                 getline(std::cin, input);
